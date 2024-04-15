@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
+import { useNavigate } from 'react-router-dom';
+import logo from './Images/Quiz_game_image.jpeg';
 import './App.css';
 
 function App() {
+
+  const navigate = useNavigate();
+
+  const navigateHome = () => {
+    navigate('/homePage');
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App" >
+                <img src={logo} className="App-logo" alt="logo" />
+                <button className="iniciar" onClick={navigateHome}>Inicie o Jogo</button>
+        </div >
     </div>
   );
 }
+
 
 export default App;
