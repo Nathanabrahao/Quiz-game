@@ -1,14 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import '../Components/Card.css';
 
-interface CardProps {
+interface Movie {
+    id: number;
     title: string;
     description: string;
     image: string;
+}
+
+interface CardProps {
+    movie: Movie;
     buttonText: string;
     buttonLink: string;
 }
 
-const Card = ({ title, description, image, buttonText, buttonLink }: CardProps) => {
+const Card: React.FC<CardProps> = ({ movie, buttonText, buttonLink }) => {
+    const navigate = useNavigate();
+    
+    const navigatePages = () => {
+        navigate(buttonLink);
+    }
+
+    const { title, description, image } = movie;
+
     return (
         <div className="card">
             <div className="card-image">
@@ -19,8 +34,10 @@ const Card = ({ title, description, image, buttonText, buttonLink }: CardProps) 
                 <p>{description}</p>
             </div>
             <div className="card-action">
-                <a href={buttonLink}>{buttonText}</a>
+                <button className="Pages" onClick={navigatePages}>{buttonText}</button>
             </div>
         </div>
-    )
-}
+    );
+};
+
+export default Card;

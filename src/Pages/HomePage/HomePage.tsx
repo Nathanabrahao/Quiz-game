@@ -1,22 +1,23 @@
 import React from "react";
-import "../HomePage/HomePage.css"
-import Movies from '../Movies/Movies'
+import "../HomePage/HomePage.css";
+import Movies from '../Movies/Themes';
+import Card from "../../Components/Card";
 
+interface Props {}
 
-
-interface Props { }
-
-
-const HomePage = (props: Props) => {
+const HomePage: React.FC<Props> = () => {
     return (
         <div className='CardTitles'>
-            <p></p>
+            {Movies.map(movie => (
+                <Card
+                    key={movie.id}
+                    movie={movie}
+                    buttonText="Ver Mais"
+                    buttonLink={`/movie/${movie.id}`}
+                />
+            ))}
         </div>
-    )
-}
-
-
-
-
+    );
+};
 
 export default HomePage;
