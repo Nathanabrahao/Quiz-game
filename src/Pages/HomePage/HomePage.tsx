@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../HomePage/HomePage.css";
-import Movies from '../Movies/Themes';
+import GenresWithImages from "../Movies/Genres";
 import Card from "../../Components/Card";
 
-interface Props {}
+interface Props { }
 
 const HomePage: React.FC<Props> = () => {
+    const genres = GenresWithImages() 
+
     return (
         <div className='CardTitles'>
-            {Movies.map(movie => (
+            <p></p>
+            {genres.map(movie => (
                 <Card
                     key={movie.id}
                     movie={movie}
@@ -17,7 +20,7 @@ const HomePage: React.FC<Props> = () => {
                 />
             ))}
         </div>
-    );
-};
+    )
+}   
 
 export default HomePage;

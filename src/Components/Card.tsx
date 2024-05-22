@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import '../Components/Card.css';
+import GenresWithImages from "../Pages/Movies/Genres";
+
 
 interface Movie {
     id: number;
@@ -22,10 +24,13 @@ const Card: React.FC<CardProps> = ({ movie, buttonText, buttonLink }) => {
         navigate(buttonLink);
     }
 
-    const { title, description, image } = movie;
+    const { id, title, description, image } = movie;
 
     return (
         <div className="card">
+            <div className="card-image">
+                <h1>{id}</h1>
+            </div>
             <div className="card-image">
                 <img src={image} alt={title} />
             </div>
@@ -39,5 +44,6 @@ const Card: React.FC<CardProps> = ({ movie, buttonText, buttonLink }) => {
         </div>
     );
 };
+
 
 export default Card;

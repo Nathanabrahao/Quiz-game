@@ -1,3 +1,4 @@
+import { queries } from '@testing-library/react';
 import axios from 'axios';
 
 
@@ -5,8 +6,16 @@ const API_KEY = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYjgwYjNjMjBlZTAwYjJmZGR
 const Base_url = 'https://api.themoviedb.org/3';
 const Accept = 'application/json'
 
-
 const tmdbService = {
+    getAllMovies: async(queries: any) => {
+      const response = await axios.get(`${Base_url}discover/movie?include_adult=false&include_video=false&language=pt-br&page=1&distinct=genre_ids`, {
+        params: {
+          api_key: API_KEY,
+          Accept: Accept
+        },
+      });
+      return response.data.results;
+    },
     getMovieCast: async (movieId: number) => {
       const response = await axios.get(`${Base_url}/movie/${movieId}/credits`, {
         params: {
