@@ -1,5 +1,18 @@
-import React, { useEffect, useState } from "react";
-import tmdbService from "../../Components/tmdbService";
+import { useEffect, useState } from "react";
+import getInfoMovies from "../../Components/tmdbService";
+
+
+interface extractInfoMovies {
+    results: {
+        genre_ids: [number]
+        id: number;
+        original_title: string;
+        overview: string;
+        poster_path: string;
+    }
+}
+
+
 
 const Genres = [
     {
@@ -118,28 +131,6 @@ const Genres = [
     }
 ];
 
-const GenresWithImages = () => {
-    const [genres, setGenres] = useState(Genres);
-
-    useEffect(() => {
-        const fetchImages = async () => {
-            const newGenres = [...genres];
-            for (let i = 0; i < newGenres.length; i++) {
-                const movies = await tmdbService.getAllMovies({ with_genres: newGenres[i].id });
-                if (movies && movies.length > 0) {
-                    if(movies[0].genre_ids.includes(newGenres[i].id)){
-                        newGenres[i].image = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2' + movies[0].poster_path;
-                    }
-                }
-            }
-            setGenres(newGenres);
-        };
-
-        fetchImages();
-    }, []);
-
-    return genres;
-};
 
 
-export default GenresWithImages;
+export default Genres;
