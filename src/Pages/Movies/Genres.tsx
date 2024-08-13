@@ -1,17 +1,4 @@
-import { useEffect, useState } from "react";
-import getInfoMovies from "../../Components/tmdbService";
-
-
-interface extractInfoMovies {
-    results: {
-        genre_ids: [number]
-        id: number;
-        original_title: string;
-        overview: string;
-        poster_path: string;
-    }
-}
-
+import React , { useEffect, useState } from "react";
 
 
 const Genres = [
